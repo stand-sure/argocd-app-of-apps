@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
-  project: sample-project
+  project: default
   source:
     path: /
     repoURL: git@github.com:stand-sure/dnsutils.git
