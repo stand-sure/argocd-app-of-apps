@@ -1,1 +1,3 @@
 **/**.ignore
+sealed-secrets
+*.tgz
