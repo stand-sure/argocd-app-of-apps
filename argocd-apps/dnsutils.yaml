@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: .
-    repoURL: git@github.com:stand-sure/dnsutils.git
+    repoURL: https://github.com/stand-sure/dnsutils.git
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
