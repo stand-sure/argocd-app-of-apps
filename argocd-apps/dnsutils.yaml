@@ -2,14 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: dnsutils
-  namespace: default
+  namespace: argocd
 spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: /
+    path: .
     repoURL: git@github.com:stand-sure/dnsutils.git
     targetRevision: HEAD
   syncPolicy:
