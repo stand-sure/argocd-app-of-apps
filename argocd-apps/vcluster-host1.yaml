@@ -8,7 +8,7 @@ spec:
   source:
     chart: vcluster
     repoURL: https://github.com/loft-sh/vcluster/tree/main/charts/k3s
-#    targetRevision: 1.16.1
+    targetRevision: HEAD
     helm:
       releaseName: vcluster-host1
       values: |
