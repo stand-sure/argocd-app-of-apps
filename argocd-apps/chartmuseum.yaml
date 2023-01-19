@@ -8,7 +8,7 @@ spec:
   source:
     chart: chartmuseum
     repoURL: https://github.com/chartmuseum/charts/tree/main/src/chartmuseum
-    targetRevision: HEAD
+    targetRevision: 3.9.3
     helm:
       releaseName: chartmuseum
       values: |
