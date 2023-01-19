@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: chartmuseum
-    repoURL: https://github.com/chartmuseum/charts/tree/main/src/chartmuseum
+    repoURL: https://chartmuseum.github.io/charts
     targetRevision: 3.9.3
     helm:
       releaseName: chartmuseum
