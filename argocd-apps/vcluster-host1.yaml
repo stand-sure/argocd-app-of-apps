@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     chart: vcluster
-    repoURL: https://github.com/loft-sh/vcluster/tree/main/charts/k3s
+    repoURL: https://charts.loft.sh
     targetRevision: HEAD
     helm:
       releaseName: vcluster-host1
