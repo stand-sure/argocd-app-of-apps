@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chartmueum
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: chartmueum
+    repoURL: https://github.com/chartmuseum/charts/tree/main/src/chartmuseum
+    targetRevision: HEAD
+    helm:
+      releaseName: chartmueum
+      values: |
+        env:
+          open:
+            DISABLE_API: false
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: chartmueum
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
