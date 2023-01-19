@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: testkube
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: testkube
+    repoURL: https://kubeshop.github.io/helm-charts
+    targetRevision: 1.8.106
+    helm:
+      releaseName: testkube
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: testkube
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
