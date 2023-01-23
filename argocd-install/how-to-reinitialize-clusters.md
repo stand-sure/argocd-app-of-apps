@@ -8,6 +8,7 @@
 
 # get password
 kubectl -n argocd get secret argocd-secret -o jsonpath="{.data.clearPassword}" | base64 -d; echo
+# k view-secret --namespace argocd argocd-secret clearPassword; echo
 
 argocd login localhost:8443
 
