@@ -1,0 +1,87 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server-ingressroute
+  namespace: argocd
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`argocd.192.168.194.135.nip.io`)
+      priority: 10
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.192.168.194.135.nip.io`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+          scheme: h2c
+    - kind: Rule
+      match: Host(`argocd.192.168.194.209.nip.io`)
+      priority: 10
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.192.168.194.209.nip.io`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+          scheme: h2c
+    - kind: Rule
+      match: Host(`argocd.192.168.194.221.nip.io`)
+      priority: 10
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.192.168.194.221.nip.io`) && Headers(`Content-Type`, `application/grpc`)
+      priority: 11
+      services:
+        - name: argo-cd-argocd-server
+          port: 80
+          scheme: h2c
+  tls:
+    certResolver: default
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo-cd-argocd-server
+  namespace: argocd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: argocd.192.168.194.221.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: http
+            path: /
+            pathType: ImplementationSpecific
+    - host: argocd.192.168.194.209.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: http
+            path: /
+            pathType: ImplementationSpecific
+    - host: argocd.192.168.194.214.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: http
+            path: /
+            pathType: ImplementationSpecific

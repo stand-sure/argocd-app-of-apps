@@ -4,6 +4,8 @@ metadata:
   name: argocd-server-ingressroute
   namespace: argocd
 spec:
+  entryPoints:
+    - websecure
   routes:
     - kind: Rule
       match: Host(`argocd.192.168.87.157.nip.io`)
@@ -20,3 +22,22 @@ spec:
           scheme: h2c
   tls:
     certResolver: default
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo-cd-argocd-server
+  namespace: argocd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: argocd.server.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: http
+            path: /
+            pathType: ImplementationSpecific
