@@ -1,0 +1,18 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: kibana-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+# spec:
+#  rules:
+#  - host: kibana.192.168.87.157.nip.io
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#         service:
+#           name: quickstart-kb-http
+#           port:
+#             number: 5601

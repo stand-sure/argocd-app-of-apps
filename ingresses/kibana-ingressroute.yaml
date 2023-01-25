@@ -1,0 +1,17 @@
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   name: quickstart-kb-http-ingressroute
+#   namespace: default
+# spec:
+#   routes:
+#     - kind: Rule
+#       match: Host(`kibana.192.168.87.157.nip.io`)
+#       priority: 10
+#       services:
+#         - kind: Service
+#           name: quickstart-kb-http
+#           namespace: default          
+#           port: 5601
+#   tls:
+#     certResolver: default
