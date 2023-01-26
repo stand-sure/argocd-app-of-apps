@@ -11,6 +11,7 @@ kubectl -n argocd get secret argocd-secret -o jsonpath="{.data.clearPassword}" |
 # k view-secret --namespace argocd argocd-secret clearPassword; echo
 
 argocd login localhost:8443
+# k view-secret -n argocd argocd-secret clearPassword; echo;  argocd login argocd.192.168.87.157.nip.io
 
 # add other clusters -- must be in ~/.kube/config
 argocd cluster add beelink-debian
