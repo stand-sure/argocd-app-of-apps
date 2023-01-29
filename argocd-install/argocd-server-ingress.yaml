@@ -21,7 +21,7 @@ spec:
           port: 80
           scheme: h2c
   tls:
-    certResolver: default
+    secretName: argocd.192.168.87.157.nip.io
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
