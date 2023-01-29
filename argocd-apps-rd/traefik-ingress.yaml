@@ -1,15 +1,8 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"traefik.containo.us/v1alpha1","kind":"IngressRoute","metadata":{"annotations":{},"name":"traefik-dashboard-ingressroute","namespace":"kube-system"},"spec":{"entryPoints":["websecure","web"],"routes":[{"kind":"Rule","match":"Host(`traefik.192.168.87.157.nip.io`)","middlewares":[{"name":"traefik-auth-middleware"}],"priority":10,"services":[{"kind":"TraefikService","name":"api@internal"}]}],"tls":{"secretName":"traefik.192.168.87.157.nip.io"}}}
-  creationTimestamp: "2023-01-29T17:44:42Z"
-  generation: 3
   name: traefik-dashboard-ingressroute
   namespace: kube-system
-  resourceVersion: "196028"
-  uid: 35d451b3-1e7b-4d1b-b253-08c3598318cd
 spec:
   entryPoints:
   - websecure
