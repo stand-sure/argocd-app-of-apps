@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: heimdall-launcher
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: heimdall
+    repoURL: https://k8s-at-home.com/charts/
+    targetRevision: 8.4.2
+    helm:
+      releaseName: heimdall-launcher
+      valueFiles:
+        - https://raw.githubusercontent.com/stand-sure/heimdall-launcher/main/value-overrides.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: heimdall-launcher
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
