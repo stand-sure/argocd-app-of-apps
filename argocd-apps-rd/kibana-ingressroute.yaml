@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kibana-ingressroute
+  namespace: elastic-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`kibana.192.168.87.157.nip.io`)
+      priority: 10
+      services:
+        - name: quickstart-kb-http
+          port: 5601
+  tls:
+    secretName: kibana.192.168.87.157.nip.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kibana.192.168.87.157.nip.io
+  namespace: elastic-system
+spec:
+  dnsNames:
+    - kibana.192.168.87.157.nip.io
+  secretName: kibana.192.168.87.157.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
