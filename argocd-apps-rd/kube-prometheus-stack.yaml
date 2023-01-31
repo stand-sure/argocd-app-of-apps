@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: heimdall
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 44.3.0
+    helm:
+      releaseName: kube-prometheus-stack
+      valueFiles:
+        - https://raw.githubusercontent.com/stand-sure/prometheus-stack/main/value-overrides.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
