@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: heimdall.192.168.87.157.nip.io
+  namespace: heimdall-launcher
+spec:
+  dnsNames:
+    - heimdall.192.168.87.157.nip.io
+  secretName: heimdall.192.168.87.157.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer

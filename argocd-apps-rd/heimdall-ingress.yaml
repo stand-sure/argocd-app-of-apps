@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: heimdall-ingressroute
+  namespace: heimdall-launcher
+spec:
+  entryPoints:
+  - websecure
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`heimdall.192.168.87.157.nip.io`)
+    priority: 10
+    services:
+    - name: heimdall-launcher
+      port: 80
+  tls:
+    secretName: heimdall.192.168.87.157.nip.io
