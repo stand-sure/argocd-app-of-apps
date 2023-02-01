@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn-server-ingressroute
+  namespace: longhorn-system
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`longhorn.192.168.87.157.nip.io`)
+      priority: 10
+      middlewares:
+        - name: longhorn-auth-middleware
+      services:
+        - name: longhorn-frontend
+          port: 80
+  tls:
+    secretName: longhorn.192.168.87.157.nip.io

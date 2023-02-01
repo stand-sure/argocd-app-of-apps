@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: longhorn.192.168.87.157.nip.io
+  namespace: longhorn-system
+spec:
+  dnsNames:
+    - longhorn.192.168.87.157.nip.io
+  secretName: longhorn.192.168.87.157.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
