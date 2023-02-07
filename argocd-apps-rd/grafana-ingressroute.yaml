@@ -1,0 +1,30 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-ingressroute
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`grafana.192.168.87.157.nip.io`)
+      priority: 10
+      services:
+        - name: kube-prometheus-stack-grafana
+          port: 80
+  tls:
+    secretName: grafana.192.168.87.157.nip.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana.192.168.87.157.nip.io
+  namespace: monitoring
+spec:
+  dnsNames:
+    - grafana.192.168.87.157.nip.io
+  secretName: grafana.192.168.87.157.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
