@@ -1,1 +1,30 @@
-../../helm-dashboard/helm-dashboard-ingressroute.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: helm-dashboard-ingressroute
+  namespace: helm-dashboard
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`helm-dashboard.192.168.87.157.nip.io`)
+      priority: 10
+      services:
+        - name: helm-dashboard
+          port: 8080
+  tls:
+    secretName: helm-dashboard.192.168.87.157.nip.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: helm-dashboard.192.168.87.157.nip.io
+  namespace: helm-dashboard
+spec:
+  dnsNames:
+    - helm-dashboard.192.168.87.157.nip.io
+  secretName: helm-dashboard.192.168.87.157.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
