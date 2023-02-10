@@ -10,7 +10,7 @@ spec:
     - kind: Rule
       match: Host(`grafana.192.168.87.157.nip.io`)
       middlewares:
-        - name: hsts-middleware
+        - name: monitoring-hsts-middleware
           namespace: monitoring
       priority: 10
       services:
