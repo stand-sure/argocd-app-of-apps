@@ -1,18 +1,18 @@
-# apiVersion: traefik.containo.us/v1alpha1
-# kind: IngressRoute
-# metadata:
-#   name: kibana-ingressroute-http
-#   namespace: elastic-system
-# spec:
-#   entryPoints:
-#     - web
-#   routes:
-#     - kind: Rule
-#       match: Host(`kibana.192.168.87.157.nip.io`)
-#       middlewares:
-#         - name: elastic-hsts-middleware
-#           namespace: elastic-system
-#       priority: 10
-#       services:
-#         - name: quickstart-kb-http
-#           port: 5601
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kibana-ingressroute-http
+  namespace: elastic-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`kibana.192.168.87.157.nip.io`)
+      middlewares:
+        - name: elastic-hsts-middleware
+          namespace: elastic-system
+      priority: 10
+      services:
+        - name: quickstart-kb-http
+          port: 5601
