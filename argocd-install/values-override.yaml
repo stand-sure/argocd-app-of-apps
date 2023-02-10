@@ -659,11 +659,11 @@ server:
   ## @param server.autoscaling.targetMemory Argo CD server deployment autoscaling target CPU memory
   ##
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
     maxReplicas: 5
-    targetCPU: 75
-    targetMemory: 75
+    targetCPU: 50
+    targetMemory: 50
 
   ## Redirect all request to https
   ## @param server.insecure Disable HTTPS redirection for Argo CD server
@@ -1369,7 +1369,7 @@ repoServer:
   ## @param repoServer.resources.requests The requested resources for the Argo CD repo server containers
   ##
   resources:
-    limits:  {}
+    limits: {}
     requests: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -1571,11 +1571,11 @@ repoServer:
   ## @param repoServer.autoscaling.targetMemory Argo CD repo server deployment autoscaling target CPU memory
   ##
   autoscaling:
-    enabled: false
+    enabled: true
     minReplicas: 1
     maxReplicas: 5
-    targetCPU: 75
-    targetMemory: 75
+    targetCPU: 50
+    targetMemory: 50
 
   ## ServiceAccount configuration for the Argo CD repo server
   ##
