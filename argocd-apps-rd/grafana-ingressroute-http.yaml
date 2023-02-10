@@ -1,0 +1,28 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: hsts-middleware
+  namespace: monitoring
+spec:
+  redirectScheme:
+    permanent: true
+    scheme: https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-ingressroute-http
+  namespace: monitoring
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`grafana.192.168.87.157.nip.io`)
+      middlewares:
+        - name: hsts-middleware
+          namespace: monitoring
+      priority: 10
+      services:
+        - name: kube-prometheus-stack-grafana
+          port: 80
