@@ -22,10 +22,13 @@ argocd repo add https://github.com/stand-sure/argocd-app-of-apps.git
 # create app for local
 argocd app create app-of-apps \
 	--repo https://github.com/stand-sure/argocd-app-of-apps \
-	--path argocd-apps \
+	--path argocd-apps-rd \
 	--dest-namespace default \
 	--dest-server https://kubernetes.default.svc \
 	--directory-recurse
+	
+# set sync policy
+argocd app set argocd/app-of-apps --sync-policy automated --auto-prune --self-heal 
 
 # create app for other cluster
 argocd app create app-of-apps-bs \
