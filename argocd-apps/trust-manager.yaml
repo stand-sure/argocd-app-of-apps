@@ -13,6 +13,8 @@ spec:
       releaseName: trust-manager
       values: |
         installCRDs: true
+      valueFiles:
+      - https://raw.githubusercontent.com/stand-sure/trust-manager/main/value-overrides.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: cert-manager
