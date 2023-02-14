@@ -7,10 +7,10 @@ spec:
   project: default
   source:
     chart: trust-manager
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: https://charts.jetstack.com
     targetRevision: 0.4.0
     helm:
-      releaseName: cert-manager
+      releaseName: trust-manager
       values: |
         installCRDs: true
   destination:
