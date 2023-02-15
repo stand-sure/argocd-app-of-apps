@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd.192.168.87.3.nip.io
+  namespace: argocd
+spec:
+  dnsNames:
+    - argocd.192.168.87.3.nip.io
+  secretName: argocd.192.168.87.3.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
