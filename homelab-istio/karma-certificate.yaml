@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: karma.192.168.87.2.nip.io
+  namespace: istio-system
+spec:
+  dnsNames:
+    - karma.192.168.87.2.nip.io
+  secretName: karma.192.168.87.2.nip.io
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer

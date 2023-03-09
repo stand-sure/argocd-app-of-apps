@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: karma-gateway
+  namespace: karma 
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - "karma.192.168.87.2.nip.io"
+    tls:
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    hosts:
+      - "karma.192.168.87.2.nip.io"
+    tls:
+      mode: SIMPLE
+      credentialName: karma.192.168.87.2.nip.io
