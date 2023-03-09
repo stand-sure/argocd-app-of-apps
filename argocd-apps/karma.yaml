@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: karma
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: karma
+    repoURL: https://wiremind.github.io/wiremind-helm-charts
+    targetRevision: 2.2.1
+    helm:
+      releaseName: karma
+      valueFiles:
+        - https://raw.githubusercontent.com/stand-sure/prymitive-karma/main/value-overrides.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: karma
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+    - CreateNamespace=true
