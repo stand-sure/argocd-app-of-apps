@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+  labels:
+    app: disk-checker
+  name: disk-checker
+  namespace: default
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: disk-checker
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: disk-checker
+    spec:
+      containers:
+      - args:
+        - -c
+        - du -a /host | sort -n -r | head -n 20
+        command:
+        - /bin/sh
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        name: disk-checked
+        resources:
+          requests:
+            cpu: 150m
+        securityContext:
+          privileged: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /host
+          name: host
+      dnsPolicy: ClusterFirst
+      hostIPC: true
+      hostNetwork: true
+      hostPID: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /
+          type: ""
+        name: host
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
