@@ -4,7 +4,7 @@ metadata:
   name: "vault"
   namespace: default
 spec:
-  size: 2
+  size: 1
   image: vault:1.6.2
   # specify a custom bank-vaults image with bankVaultsImage:
   # bankVaultsImage: ghcr.io/banzaicloud/bank-vaults:latest
