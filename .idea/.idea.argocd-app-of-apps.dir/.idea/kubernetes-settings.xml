@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KubernetesSettings">
+    <specSources>
+      <SpecSource>
+        <option name="pathOrUrl" value="$USER_HOME$/crds/helmchartconfig-crd.yaml" />
+      </SpecSource>
+      <SpecSource>
+        <option name="pathOrUrl" value="$USER_HOME$/crds/certificates.cert-manager.io-crd.yaml" />
+      </SpecSource>
+      <SpecSource>
+        <option name="pathOrUrl" value="$USER_HOME$/crds/ingressroute-crd.yaml" />
+      </SpecSource>
+    </specSources>
+  </component>
+</project>
